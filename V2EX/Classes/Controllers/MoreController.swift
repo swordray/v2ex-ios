@@ -42,8 +42,9 @@ extension MoreController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
         case 0:
-            let cell = UITableViewCell()
+            let cell = UITableViewCell(style: .value1, reuseIdentifier: nil)
             cell.accessoryType = .disclosureIndicator
+            cell.detailTextLabel?.text = Bundle.main.infoDictionary?[kCFBundleNameKey as String] as? String
             cell.textLabel?.text = "关于"
             return cell
 
