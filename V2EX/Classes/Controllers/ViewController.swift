@@ -58,7 +58,10 @@ class ViewController: UIViewController {
     internal func showHUD() {
         var ancestor: UIViewController = self
         while let parent = ancestor.parent { ancestor = parent }
-        progressHUD = progressHUD ?? JGProgressHUD(style: .extraLight)
+        let style: JGProgressHUDStyle = traitCollection.userInterfaceStyle != .dark ? .extraLight : .dark
+        if progressHUD?.style != style {
+            progressHUD = JGProgressHUD(style: style)
+        }
         progressHUD?.show(in: ancestor.view, animated: false)
     }
 

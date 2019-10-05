@@ -11,5 +11,5 @@ import Ladybug
 struct Section: JSONCodable {
 
     var name: String?
-    var nodes: [Node] = []
+    var nodes: [Node]
 }

@@ -37,7 +37,7 @@
 		B2B2FEEB225E3D8A00E5364B /* TopicReplyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B2FEEA225E3D8A00E5364B /* TopicReplyCell.swift */; };
 		B2B2FEED225F53BC00E5364B /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B2FEEC225F53BC00E5364B /* ActivityIndicatorView.swift */; };
 		B2B2FEEF225F53D500E5364B /* NetworkErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B2FEEE225F53D500E5364B /* NetworkErrorView.swift */; };
-		B2B2FEF1225F53EB00E5364B /* NotFoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B2FEF0225F53EB00E5364B /* NotFoundView.swift */; };
+		B2B2FEF1225F53EB00E5364B /* NoContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B2FEF0225F53EB00E5364B /* NoContentView.swift */; };
 		B2B2FEF3225F622500E5364B /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B2FEF2225F622500E5364B /* WebViewController.swift */; };
 		B2CA8810226D848A00F8B12F /* TopicsNodeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CA880F226D848A00F8B12F /* TopicsNodeButton.swift */; };
 		B2CA8812226D97E900F8B12F /* TopicsNodesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CA8811226D97E900F8B12F /* TopicsNodesView.swift */; };
@@ -56,7 +56,6 @@
 		B24B36A3225A27210004BCA0 /* V2EX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = V2EX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B24B36A6225A27210004BCA0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B24B36AD225A27220004BCA0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		B24B36B0225A27220004BCA0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B24B36B2225A27220004BCA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B24B36BA225A2A070004BCA0 /* TopicsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsController.swift; sourceTree = "<group>"; };
 		B24B36BD225B3DF20004BCA0 /* Topic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
@@ -82,13 +81,14 @@
 		B2B2FEEA225E3D8A00E5364B /* TopicReplyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicReplyCell.swift; sourceTree = "<group>"; };
 		B2B2FEEC225F53BC00E5364B /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
 		B2B2FEEE225F53D500E5364B /* NetworkErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorView.swift; sourceTree = "<group>"; };
-		B2B2FEF0225F53EB00E5364B /* NotFoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotFoundView.swift; sourceTree = "<group>"; };
+		B2B2FEF0225F53EB00E5364B /* NoContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoContentView.swift; sourceTree = "<group>"; };
 		B2B2FEF2225F622500E5364B /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		B2CA880F226D848A00F8B12F /* TopicsNodeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsNodeButton.swift; sourceTree = "<group>"; };
 		B2CA8811226D97E900F8B12F /* TopicsNodesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicsNodesView.swift; sourceTree = "<group>"; };
 		B2CA8813226DA79500F8B12F /* SignInUsernameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInUsernameCell.swift; sourceTree = "<group>"; };
 		B2CA8815226DA97300F8B12F /* SignInPasswordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPasswordCell.swift; sourceTree = "<group>"; };
 		B2E3704922AB70980072DDCC /* ComposeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeController.swift; sourceTree = "<group>"; };
+		B2E6BA7C23364E0000A5F230 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.storyboard"; sourceTree = "<group>"; };
 		B2E85F8E226717F100D20A3F /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -189,7 +189,7 @@
 			children = (
 				B2B2FEEC225F53BC00E5364B /* ActivityIndicatorView.swift */,
 				B2B2FEEE225F53D500E5364B /* NetworkErrorView.swift */,
-				B2B2FEF0225F53EB00E5364B /* NotFoundView.swift */,
+				B2B2FEF0225F53EB00E5364B /* NoContentView.swift */,
 				B2536D4E22667BAD002E2509 /* SignIn */,
 				B24B36CB225C4D680004BCA0 /* Topic */,
 				B24B36C4225B659C0004BCA0 /* Topics */,
@@ -288,11 +288,10 @@
 			};
 			buildConfigurationList = B24B369E225A27210004BCA0 /* Build configuration list for PBXProject "V2EX" */;
 			compatibilityVersion = "Xcode 9.3";
-			developmentRegion = zh_CN;
+			developmentRegion = "zh-Hans";
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				zh_CN,
-				Base,
+				"zh-Hans",
 			);
 			mainGroup = B24B369A225A27210004BCA0;
 			productRefGroup = B24B36A4225A27210004BCA0 /* Products */;
@@ -392,7 +391,7 @@
 				B29F7AAD22662D3C00A6E7DE /* UserHeaderView.swift in Sources */,
 				B2971DB82269BF75000C6645 /* NodesController.swift in Sources */,
 				B2971DBA2269BFB5000C6645 /* Section.swift in Sources */,
-				B2B2FEF1225F53EB00E5364B /* NotFoundView.swift in Sources */,
+				B2B2FEF1225F53EB00E5364B /* NoContentView.swift in Sources */,
 				B24B36BE225B3DF20004BCA0 /* Topic.swift in Sources */,
 				B2E85F8F226717F100D20A3F /* Comment.swift in Sources */,
 				B24B36BB225A2A070004BCA0 /* TopicsController.swift in Sources */,
@@ -424,7 +423,7 @@
 		B24B36AF225A27220004BCA0 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				B24B36B0225A27220004BCA0 /* Base */,
+				B2E6BA7C23364E0000A5F230 /* zh-Hans */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -483,7 +482,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -538,7 +537,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -554,12 +553,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 4ZT4M533K7;
 				INFOPLIST_FILE = V2EX/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.secipin.v2ex;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -573,12 +574,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 4ZT4M533K7;
 				INFOPLIST_FILE = V2EX/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.secipin.v2ex;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

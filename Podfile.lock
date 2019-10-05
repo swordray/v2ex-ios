@@ -1,54 +1,66 @@
 PODS:
-  - Alamofire (4.8.2)
-  - AlamofireImage (3.5.2):
-    - Alamofire (~> 4.8)
+  - Alamofire (5.0.0-rc.2)
+  - AlamofireImage (4.0.0-beta.5):
+    - Alamofire (~> 5.0.0-rc.2)
   - CrossroadRegex (1.1.0)
-  - Firebase/Core (6.2.0):
+  - Firebase/Core (6.9.0):
     - Firebase/CoreOnly
-    - FirebaseAnalytics (= 6.0.1)
-  - Firebase/CoreOnly (6.2.0):
-    - FirebaseCore (= 6.0.2)
-  - FirebaseAnalytics (6.0.1):
-    - FirebaseCore (~> 6.0)
-    - FirebaseInstanceID (~> 4.1)
-    - GoogleAppMeasurement (= 6.0.1)
+    - FirebaseAnalytics (= 6.1.2)
+  - Firebase/CoreOnly (6.9.0):
+    - FirebaseCore (= 6.3.0)
+  - FirebaseAnalytics (6.1.2):
+    - FirebaseCore (~> 6.3)
+    - FirebaseInstanceID (~> 4.2)
+    - GoogleAppMeasurement (= 6.1.2)
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
     - GoogleUtilities/MethodSwizzler (~> 6.0)
     - GoogleUtilities/Network (~> 6.0)
     - "GoogleUtilities/NSData+zlib (~> 6.0)"
     - nanopb (~> 0.3)
-  - FirebaseCore (6.0.2):
-    - GoogleUtilities/Environment (~> 6.0)
-    - GoogleUtilities/Logger (~> 6.0)
-  - FirebaseInstanceID (4.1.1):
+  - FirebaseCore (6.3.0):
+    - FirebaseCoreDiagnostics (~> 1.0)
+    - FirebaseCoreDiagnosticsInterop (~> 1.0)
+    - GoogleUtilities/Environment (~> 6.2)
+    - GoogleUtilities/Logger (~> 6.2)
+  - FirebaseCoreDiagnostics (1.1.0):
+    - FirebaseCoreDiagnosticsInterop (~> 1.0)
+    - GoogleDataTransportCCTSupport (~> 1.0)
+    - GoogleUtilities/Environment (~> 6.2)
+    - GoogleUtilities/Logger (~> 6.2)
+  - FirebaseCoreDiagnosticsInterop (1.0.0)
+  - FirebaseInstanceID (4.2.5):
     - FirebaseCore (~> 6.0)
     - GoogleUtilities/Environment (~> 6.0)
     - GoogleUtilities/UserDefaults (~> 6.0)
-  - GoogleAppMeasurement (6.0.1):
+  - GoogleAppMeasurement (6.1.2):
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
     - GoogleUtilities/MethodSwizzler (~> 6.0)
     - GoogleUtilities/Network (~> 6.0)
     - "GoogleUtilities/NSData+zlib (~> 6.0)"
     - nanopb (~> 0.3)
-  - GoogleUtilities/AppDelegateSwizzler (6.2.0):
+  - GoogleDataTransport (2.0.0)
+  - GoogleDataTransportCCTSupport (1.1.0):
+    - GoogleDataTransport (~> 2.0)
+    - nanopb
+  - GoogleUtilities/AppDelegateSwizzler (6.3.1):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
     - GoogleUtilities/Network
-  - GoogleUtilities/Environment (6.2.0)
-  - GoogleUtilities/Logger (6.2.0):
+  - GoogleUtilities/Environment (6.3.1)
+  - GoogleUtilities/Logger (6.3.1):
     - GoogleUtilities/Environment
-  - GoogleUtilities/MethodSwizzler (6.2.0):
+  - GoogleUtilities/MethodSwizzler (6.3.1):
     - GoogleUtilities/Logger
-  - GoogleUtilities/Network (6.2.0):
+  - GoogleUtilities/Network (6.3.1):
     - GoogleUtilities/Logger
     - "GoogleUtilities/NSData+zlib"
     - GoogleUtilities/Reachability
-  - "GoogleUtilities/NSData+zlib (6.2.0)"
-  - GoogleUtilities/Reachability (6.2.0):
+  - "GoogleUtilities/NSData+zlib (6.3.1)"
+  - GoogleUtilities/Reachability (6.3.1):
     - GoogleUtilities/Logger
-  - GoogleUtilities/UserDefaults (6.2.0):
+  - GoogleUtilities/UserDefaults (6.3.1):
     - GoogleUtilities/Logger
-  - JGProgressHUD (2.0.3)
+  - JGProgressHUD (2.0.4)
   - JXWebViewController (1.2.1)
   - Kanna (5.0.0)
   - KeychainAccess (3.2.0)
@@ -58,15 +70,15 @@ PODS:
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
-  - SnapKit (5.0.0)
-  - SwiftDate (6.0.3)
-  - SwiftLint (0.33.0)
+  - SnapKit (5.0.1)
+  - SwiftDate (6.1.0)
+  - SwiftLint (0.35.0)
   - TUSafariActivity (1.0.4)
   - UIButtonSetBackgroundColorForState (0.1.0)
 
 DEPENDENCIES:
-  - Alamofire
-  - AlamofireImage
+  - Alamofire (~> 5.0.0-rc.2)
+  - AlamofireImage (~> 4.0.0-beta.5)
   - CrossroadRegex
   - Firebase/Core
   - JGProgressHUD
@@ -81,15 +93,19 @@ DEPENDENCIES:
   - UIButtonSetBackgroundColorForState
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - Alamofire
     - AlamofireImage
     - CrossroadRegex
     - Firebase
     - FirebaseAnalytics
     - FirebaseCore
+    - FirebaseCoreDiagnostics
+    - FirebaseCoreDiagnosticsInterop
     - FirebaseInstanceID
     - GoogleAppMeasurement
+    - GoogleDataTransport
+    - GoogleDataTransportCCTSupport
     - GoogleUtilities
     - JGProgressHUD
     - JXWebViewController
@@ -104,27 +120,31 @@ SPEC REPOS:
     - UIButtonSetBackgroundColorForState
 
 SPEC CHECKSUMS:
-  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
-  AlamofireImage: 63cfe3baf1370be6c498149687cf6db3e3b00999
+  Alamofire: f9450d3c7f6bea2ad62e7a541c3e9b186c7991d6
+  AlamofireImage: f6dfe201f6d59cc6a045b5cb228b58962b8ef31d
   CrossroadRegex: 5eaadb3f7b4014728f1cbd1014756b126c1dbd9a
-  Firebase: 5965bac23e7fcb5fa6d926ed429c9ecef8a2014e
-  FirebaseAnalytics: 629301c2b9925f3537d4093a17a72751ae5b7084
-  FirebaseCore: b0f0262acebfa540e5f97b3832dbb13186980822
-  FirebaseInstanceID: cdb3827746d53ece7ae87a5c51c25c3055443366
-  GoogleAppMeasurement: 51d8d9ea48f0ca44484d29cfbdef976fbd4fc336
-  GoogleUtilities: 996e0db07153674fd1b54b220fda3a3dc3547cba
-  JGProgressHUD: 12b20a8f4ffe05258f8635c1ab92816e451f904d
+  Firebase: 2d750c54cda57d5a6ae31212cfe5cc813c6be7e4
+  FirebaseAnalytics: 5d9ccbf46ed25d3ec9304d263f85bddf1e93e2d2
+  FirebaseCore: 8b2765c445d40db7137989b7146a3aa3f91b5529
+  FirebaseCoreDiagnostics: be4f7a09d02ab305f18de59a470412caddb64c2a
+  FirebaseCoreDiagnosticsInterop: 6829da2b8d1fc795ff1bd99df751d3788035d2cb
+  FirebaseInstanceID: 550df9be1f99f751d8fcde3ac342a1e21a0e6c42
+  GoogleAppMeasurement: 0ae90be1cc4dad40f4a27fc767ef59fa032ec87b
+  GoogleDataTransport: c8617c00e4f3eb9418e42ac0e8ac5241a9d555dd
+  GoogleDataTransportCCTSupport: 9f352523e8785a71f6754f51eeff09f49ec19268
+  GoogleUtilities: f895fde57977df4e0233edda0dbeac490e3703b6
+  JGProgressHUD: 62658b14e72cccf179efc7a13bcb54d30b92fc22
   JXWebViewController: 939b9b9b104e53810e73dc51535294ded7c8abf0
   Kanna: a32875df62975f8f4b871e933b4ea1a5c3b8be0f
   KeychainAccess: 3b1bf8a77eb4c6ea1ce9404c292e48f948954c6b
   Ladybug: f445480856a4971ef401abcb14ff8ea2d1178785
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
-  SnapKit: fd22d10eb9aff484d79a8724eab922c1ddf89bcf
-  SwiftDate: 8d4f14bf1ef68e95094511504856547bf9e3e1a6
-  SwiftLint: fed9c66336e41fc74dc48a73678380718f0c8b0e
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  SwiftDate: fa2bb3962056bb44047b4b85a30044e5eae30b03
+  SwiftLint: 5553187048b900c91aa03552807681bb6b027846
   TUSafariActivity: afc55a00965377939107ce4fdc7f951f62454546
   UIButtonSetBackgroundColorForState: fcc963a30f972e15434bacebefe042033940a438
 
-PODFILE CHECKSUM: 1ba160c94f80060d371bffecd8296d0a611dd9d2
+PODFILE CHECKSUM: fa691ca4f17477d264259c79840ed1e6e7068b9a
 
-COCOAPODS: 1.7.1
+COCOAPODS: 1.8.3

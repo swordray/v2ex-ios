@@ -14,7 +14,7 @@ class UserController: ViewController {
     private var activityIndicatorView: ActivityIndicatorView!
     private var isRefreshing = false { didSet { didSetRefreshing() } }
     private var networkErrorView: NetworkErrorView!
-    private var notFoundView: NotFoundView!
+    private var noContentView: NoContentView!
     private var tableView: UITableView!
     public  var user: User? { didSet { didSetUser() } }
 
@@ -42,9 +42,9 @@ class UserController: ViewController {
         networkErrorView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(fetchData)))
         view.addSubview(networkErrorView)
 
-        notFoundView = NotFoundView()
-        notFoundView.textLabel?.text = "无内容"
-        view.addSubview(notFoundView)
+        noContentView = NoContentView()
+        noContentView.textLabel?.text = "无内容"
+        view.addSubview(noContentView)
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -59,8 +59,6 @@ class UserController: ViewController {
         super.viewWillAppear(animated)
 
         additionalSafeAreaInsets.top = -(navigationController?.navigationBar.intrinsicContentSize.height ?? 0)
-
-        registerForPreviewing(with: self, sourceView: tableView)
 
         tableView.indexPathsForSelectedRows?.forEach { tableView.deselectRow(at: $0, animated: animated) }
 
@@ -85,7 +83,7 @@ class UserController: ViewController {
     private func fetchData() {
         if isRefreshing { return }
         isRefreshing = true
-        Alamofire.request(
+        AF.request(
             baseURL
                 .appendingPathComponent("member")
                 .appendingPathComponent(user?.name ?? "")
@@ -115,7 +113,7 @@ class UserController: ViewController {
                     },
                 ] as [String: Any?]
                 self.user = try? User(json: json)
-                self.notFoundView.isHidden = self.user?.topics?.count ?? 0 > 0
+                self.noContentView.isHidden = self.user?.topics?.count ?? 0 > 0
                 self.tableView.reloadData()
             } else {
                 self.networkErrorView.isHidden = false
@@ -127,7 +125,7 @@ class UserController: ViewController {
     private func didSetRefreshing() {
         if isRefreshing {
             networkErrorView.isHidden = true
-            notFoundView.isHidden = true
+            noContentView.isHidden = true
             if tableView.refreshControl?.isRefreshing ?? false { return }
             activityIndicatorView.startAnimating()
         } else {
@@ -149,7 +147,7 @@ class UserController: ViewController {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alertController.addAction(UIAlertAction(title: "退出登录", style: .destructive) { _ in
             self.showHUD()
-            Alamofire.request(
+            AF.request(
                 self.baseURL.appendingPathComponent("signout"),
                 parameters: [
                     "once": self.user?.once ?? "",
@@ -180,7 +178,7 @@ class UserController: ViewController {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alertController.addAction(UIAlertAction(title: user?.isBlocked ?? false ? "解除屏蔽" : "屏蔽", style: .destructive) { _ in
             self.showHUD()
-            Alamofire.request(
+            AF.request(
                 self.baseURL
                     .appendingPathComponent(self.user?.isBlocked ?? false ? "unblock" : "block")
                     .appendingPathComponent(String(self.user?.id ?? 0)),
@@ -241,6 +239,7 @@ extension UserController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TopicsCell.description(), for: indexPath) as? TopicsCell ?? .init()
+        cell.tableViewStyle = tableView.style
         cell.topic = user?.topics?[indexPath.row]
         return cell
     }
@@ -253,22 +252,5 @@ extension UserController: UITableViewDelegate {
         topicController.topic = user?.topics?[indexPath.row]
         topicController.topic?.user = user
         navigationController?.pushViewController(topicController, animated: true)
-    }
-}
-
-extension UserController: UIViewControllerPreviewingDelegate {
-
-    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
-        guard let indexPath = tableView.indexPathForRow(at: location) else { return nil }
-        guard let cell = tableView.cellForRow(at: indexPath) else { return nil }
-        previewingContext.sourceRect = cell.frame
-        let topicController = TopicController()
-        topicController.topic = user?.topics?[indexPath.row]
-        topicController.topic?.user = user
-        return topicController
-    }
-
-    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
-        navigationController?.pushViewController(viewControllerToCommit, animated: true)
     }
 }

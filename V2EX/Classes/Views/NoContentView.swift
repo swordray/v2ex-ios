@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NotFoundView: UIStackView {
+class NoContentView: UIStackView {
 
     public  var textLabel: UILabel!
 
@@ -21,7 +21,7 @@ class NotFoundView: UIStackView {
 
         textLabel = UILabel()
         textLabel.font = .preferredFont(forTextStyle: .title1)
-        textLabel.textColor = .lightGray
+        textLabel.textColor = .secondaryLabel
         addArrangedSubview(textLabel)
     }
 

@@ -18,14 +18,14 @@ class TopicCommentCell: TopicWebCell {
 
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.spacing = UIFontMetrics.default.scaledValue(for: 8)
+        stackView.spacing = 8
         contentView.addSubview(stackView)
         stackView.snp.makeConstraints { $0.margins.equalToSuperview().priority(999) }
 
         createdAtLabel = UILabel()
         createdAtLabel.font = .preferredFont(forTextStyle: .subheadline)
         createdAtLabel.numberOfLines = 0
-        createdAtLabel.textColor = .lightGray
+        createdAtLabel.textColor = .secondaryLabel
         stackView.addArrangedSubview(createdAtLabel)
 
         stackView.addArrangedSubview(webView)

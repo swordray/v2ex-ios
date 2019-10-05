@@ -24,7 +24,7 @@ class TopicNameCell: UITableViewCell {
 
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.spacing = UIFontMetrics.default.scaledValue(for: 8)
+        stackView.spacing = 8
         contentView.addSubview(stackView)
         stackView.snp.makeConstraints { $0.margins.equalToSuperview().priority(999) }
 
@@ -35,18 +35,18 @@ class TopicNameCell: UITableViewCell {
 
         let detailStackView = UIStackView()
         detailStackView.alignment = .center
-        detailStackView.spacing = UIFontMetrics.default.scaledValue(for: 8)
+        detailStackView.spacing = 8
         stackView.addArrangedSubview(detailStackView)
 
         userAvatarView = UIImageView()
         userAvatarView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showUser)))
-        userAvatarView.backgroundColor = .groupTableViewBackground
+        userAvatarView.backgroundColor = .secondarySystemBackground
         userAvatarView.clipsToBounds = true
         userAvatarView.isUserInteractionEnabled = true
-        userAvatarView.layer.cornerRadius = UIFontMetrics.default.scaledValue(for: 22)
-        userAvatarView.snp.makeConstraints { $0.size.equalTo(UIFontMetrics.default.scaledValue(for: 44)) }
+        userAvatarView.layer.cornerRadius = 22
+        userAvatarView.snp.makeConstraints { $0.size.equalTo(44) }
         detailStackView.addArrangedSubview(userAvatarView)
-        detailStackView.setCustomSpacing(UIFontMetrics.default.scaledValue(for: 15), after: userAvatarView)
+        detailStackView.setCustomSpacing(15, after: userAvatarView)
 
         userNameButton = UIButton()
         userNameButton.addTarget(self, action: #selector(showUser), for: .touchUpInside)
@@ -64,10 +64,10 @@ class TopicNameCell: UITableViewCell {
 
         nodeButton = UIButton()
         nodeButton.addTarget(self, action: #selector(showNode), for: .touchUpInside)
-        nodeButton.backgroundColor = .groupTableViewBackground
+        nodeButton.backgroundColor = .quaternarySystemFill
         nodeButton.clipsToBounds = true
-        nodeButton.contentEdgeInsets = UIEdgeInsets(top: UIFontMetrics.default.scaledValue(for: 3), left: UIFontMetrics.default.scaledValue(for: 3), bottom: UIFontMetrics.default.scaledValue(for: 3), right: UIFontMetrics.default.scaledValue(for: 3))
-        nodeButton.layer.cornerRadius = UIFontMetrics.default.scaledValue(for: 3)
+        nodeButton.contentEdgeInsets = UIEdgeInsets(top: 3, left: 3, bottom: 3, right: 3)
+        nodeButton.layer.cornerRadius = 3
         nodeButton.titleLabel?.font = .preferredFont(forTextStyle: .body)
         nodeButton.setTitleColor(tintColor, for: .normal)
         nodeButton.setTitleColor(tintColor.withAlphaComponent(0.2), for: .highlighted)
@@ -76,7 +76,7 @@ class TopicNameCell: UITableViewCell {
         createdAtLabel = UILabel()
         createdAtLabel.font = .preferredFont(forTextStyle: .subheadline)
         createdAtLabel.numberOfLines = 0
-        createdAtLabel.textColor = .lightGray
+        createdAtLabel.textColor = .secondaryLabel
         stackView.addArrangedSubview(createdAtLabel)
     }
 

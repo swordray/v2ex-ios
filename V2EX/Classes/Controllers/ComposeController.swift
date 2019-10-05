@@ -59,7 +59,7 @@ class ComposeController: ViewController {
         let url = baseURL
             .appendingPathComponent("t")
             .appendingPathComponent(String(topic?.id ?? 0))
-        Alamofire.request(
+        AF.request(
             url,
             method: .post,
             parameters: [

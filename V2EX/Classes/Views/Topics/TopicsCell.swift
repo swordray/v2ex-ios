@@ -14,6 +14,7 @@ class TopicsCell: UITableViewCell {
     private var nodeButton: UIButton!
     private var repliedAtLabel: UILabel!
     private var repliesCountLabel: UILabel!
+    public  var tableViewStyle: UITableView.Style?
     public  var topic: Topic? { didSet { didSetTopic() } }
     private var userAvatarView: UIImageView!
     private var userNameLabel: UILabel!
@@ -25,21 +26,21 @@ class TopicsCell: UITableViewCell {
 
         let stackView = UIStackView()
         stackView.alignment = .center
-        stackView.spacing = UIFontMetrics.default.scaledValue(for: 8)
+        stackView.spacing = 8
         contentView.addSubview(stackView)
         stackView.snp.makeConstraints { $0.margins.equalToSuperview().priority(999) }
 
         userAvatarView = UIImageView()
-        userAvatarView.backgroundColor = .groupTableViewBackground
+        userAvatarView.backgroundColor = .secondarySystemBackground
         userAvatarView.clipsToBounds = true
-        userAvatarView.layer.cornerRadius = UIFontMetrics.default.scaledValue(for: 22)
-        userAvatarView.snp.makeConstraints { $0.size.equalTo(UIFontMetrics.default.scaledValue(for: 44)) }
+        userAvatarView.layer.cornerRadius = 22
+        userAvatarView.snp.makeConstraints { $0.size.equalTo(44) }
         stackView.addArrangedSubview(userAvatarView)
         stackView.setCustomSpacing(15, after: userAvatarView)
 
         let contentStackView = UIStackView()
         contentStackView.axis = .vertical
-        contentStackView.spacing = UIFontMetrics.default.scaledValue(for: 8)
+        contentStackView.spacing = 8
         contentStackView.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         contentStackView.setContentHuggingPriority(.defaultLow, for: .horizontal)
         stackView.addArrangedSubview(contentStackView)
@@ -50,18 +51,18 @@ class TopicsCell: UITableViewCell {
         contentStackView.addArrangedSubview(nameLabel)
 
         let detailStackView = UIStackView()
-        detailStackView.spacing = UIFontMetrics.default.scaledValue(for: 8)
+        detailStackView.spacing = 8
         contentStackView.addArrangedSubview(detailStackView)
 
         nodeButton = UIButton()
-        nodeButton.backgroundColor = .groupTableViewBackground
+        nodeButton.backgroundColor = .quaternarySystemFill
         nodeButton.clipsToBounds = true
-        nodeButton.contentEdgeInsets = UIEdgeInsets(top: UIFontMetrics.default.scaledValue(for: 3), left: UIFontMetrics.default.scaledValue(for: 3), bottom: UIFontMetrics.default.scaledValue(for: 3), right: UIFontMetrics.default.scaledValue(for: 3))
+        nodeButton.contentEdgeInsets = UIEdgeInsets(top: 3, left: 3, bottom: 3, right: 3)
         nodeButton.isUserInteractionEnabled = false
-        nodeButton.layer.cornerRadius = UIFontMetrics.default.scaledValue(for: 3)
+        nodeButton.layer.cornerRadius = 3
         nodeButton.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         nodeButton.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-        nodeButton.setTitleColor(.gray, for: .normal)
+        nodeButton.setTitleColor(.secondaryLabel, for: .normal)
         nodeButton.titleLabel?.font = .preferredFont(forTextStyle: .subheadline)
         detailStackView.addArrangedSubview(nodeButton)
 
@@ -69,21 +70,21 @@ class TopicsCell: UITableViewCell {
         userNameLabel.font = .preferredFont(forTextStyle: .subheadline)
         userNameLabel.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         userNameLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-        userNameLabel.textColor = .gray
+        userNameLabel.textColor = .secondaryLabel
         detailStackView.addArrangedSubview(userNameLabel)
 
         repliedAtLabel = UILabel()
         repliedAtLabel.font = .preferredFont(forTextStyle: .subheadline)
         repliedAtLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         repliedAtLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
-        repliedAtLabel.textColor = .lightGray
+        repliedAtLabel.textColor = .tertiaryLabel
         detailStackView.addArrangedSubview(repliedAtLabel)
 
         repliesCountLabel = UILabel()
         repliesCountLabel.font = .preferredFont(forTextStyle: .body)
         repliesCountLabel.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         repliesCountLabel.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-        repliesCountLabel.textColor = .gray
+        repliesCountLabel.textColor = .secondaryLabel
         stackView.addArrangedSubview(repliesCountLabel)
     }
 
@@ -93,7 +94,7 @@ class TopicsCell: UITableViewCell {
     }
 
     private func didSetTopic() {
-        backgroundColor = topic?.isSticky ?? false ? .groupTableViewBackground : .white
+        backgroundColor = topic?.isSticky ?? false ? .secondarySystemBackground : tableViewStyle == .plain ? .systemBackground : .secondarySystemGroupedBackground
         nameLabel.text = topic?.name
         nodeButton.isHidden = topic?.node?.name == nil
         nodeButton.setTitle(topic?.node?.name, for: .normal)
@@ -105,7 +106,7 @@ class TopicsCell: UITableViewCell {
         userNameLabel.text = topic?.user?.name
 
         if topic?.user != nil {
-            let size = CGSize(width: UIFontMetrics.default.scaledValue(for: 44), height: 1)
+            let size = CGSize(width: 44, height: 1)
             UIGraphicsBeginImageContextWithOptions(size, false, UIScreen.main.scale)
             let image = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()

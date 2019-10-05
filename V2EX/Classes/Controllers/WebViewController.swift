@@ -27,8 +27,6 @@ class WebViewController: JXWebViewController {
     override func loadView() {
         super.loadView()
 
-        view.backgroundColor = .white
-
         if title != nil {
             webViewKeyValueObservations[\WKWebView.title] = nil
         }

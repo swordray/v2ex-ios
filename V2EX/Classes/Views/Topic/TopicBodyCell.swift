@@ -16,7 +16,7 @@ class TopicBodyCell: TopicWebCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
         contentView.addSubview(webView)
-        webView.snp.makeConstraints { $0.edges.equalTo(contentView.layoutMarginsGuide) }
+        webView.snp.makeConstraints { $0.edges.equalTo(contentView.layoutMarginsGuide).priority(999) }
     }
 
     private func didSetTopic() {

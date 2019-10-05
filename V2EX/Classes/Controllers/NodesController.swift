@@ -45,8 +45,6 @@ class NodesController: ViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        registerForPreviewing(with: self, sourceView: tableView)
-
         tableView.indexPathsForSelectedRows?.forEach { tableView.deselectRow(at: $0, animated: animated) }
 
         if sections.count == 0 || !networkErrorView.isHidden { fetchData() }
@@ -56,7 +54,7 @@ class NodesController: ViewController {
     private func fetchData() {
         if isRefreshing { return }
         isRefreshing = true
-        Alamofire.request(
+        AF.request(
             baseURL
         )
         .responseString { response in
@@ -122,21 +120,5 @@ extension NodesController: UITableViewDelegate {
         let topicsController = TopicsController()
         topicsController.node = sections[indexPath.section].nodes[indexPath.row]
         navigationController?.pushViewController(topicsController, animated: true)
-    }
-}
-
-extension NodesController: UIViewControllerPreviewingDelegate {
-
-    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
-        guard let indexPath = tableView.indexPathForRow(at: location) else { return nil }
-        guard let cell = tableView.cellForRow(at: indexPath) else { return nil }
-        previewingContext.sourceRect = cell.frame
-        let topicsController = TopicsController()
-        topicsController.node = sections[indexPath.section].nodes[indexPath.row]
-        return topicsController
-    }
-
-    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
-        navigationController?.pushViewController(viewControllerToCommit, animated: true)
     }
 }

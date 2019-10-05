@@ -19,7 +19,7 @@ class TopicReplyCell: TopicWebCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-        let size = CGSize(width: UIFontMetrics.default.scaledValue(for: 44), height: 1)
+        let size = CGSize(width: 44, height: 1)
         UIGraphicsBeginImageContextWithOptions(size, false, UIScreen.main.scale)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
@@ -27,20 +27,20 @@ class TopicReplyCell: TopicWebCell {
 
         userAvatarView = UIImageView()
         userAvatarView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showUser)))
-        userAvatarView.backgroundColor = .groupTableViewBackground
+        userAvatarView.backgroundColor = .secondarySystemBackground
         userAvatarView.clipsToBounds = true
         userAvatarView.isUserInteractionEnabled = true
-        userAvatarView.layer.cornerRadius = UIFontMetrics.default.scaledValue(for: 22)
+        userAvatarView.layer.cornerRadius = 22
         contentView.addSubview(userAvatarView)
         userAvatarView.snp.makeConstraints { make in
             make.leading.top.equalTo(contentView.layoutMarginsGuide)
             make.bottom.lessThanOrEqualTo(contentView.layoutMarginsGuide).priority(999)
-            make.size.equalTo(UIFontMetrics.default.scaledValue(for: 44))
+            make.size.equalTo(44)
         }
 
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.spacing = UIFontMetrics.default.scaledValue(for: 8)
+        stackView.spacing = 8
         contentView.addSubview(stackView)
         stackView.snp.makeConstraints { make in
             make.trailing.top.equalTo(contentView.layoutMarginsGuide)
@@ -49,7 +49,7 @@ class TopicReplyCell: TopicWebCell {
         }
 
         let detailStackView = UIStackView()
-        detailStackView.spacing = UIFontMetrics.default.scaledValue(for: 8)
+        detailStackView.spacing = 8
         stackView.addArrangedSubview(detailStackView)
 
         userNameButton = UIButton()
@@ -66,7 +66,7 @@ class TopicReplyCell: TopicWebCell {
         createdAtLabel.font = .preferredFont(forTextStyle: .subheadline)
         createdAtLabel.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         createdAtLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
-        createdAtLabel.textColor = .lightGray
+        createdAtLabel.textColor = .secondaryLabel
         detailStackView.addArrangedSubview(createdAtLabel)
 
         indexButton = UIButton()

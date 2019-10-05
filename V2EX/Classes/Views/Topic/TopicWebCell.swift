@@ -57,10 +57,13 @@ class TopicWebCell: UITableViewCell {
             ol { list-style-type: decimal; }
             ul { list-style-type: disc; }
             li { margin: 0.5em 0; }
-            hr { margin: 1em 0; border: none; border-bottom: 0.5px solid #c7c7cc; }
-            pre { padding: 0.5em; margin: 1em 0; font: -apple-system-footnote; white-space: pre-wrap; background-color: #f8f8f8; }
+            hr { margin: 1em 0; border: none; border-bottom: 0.5px solid #c6c6c8; }
+            @media (prefers-color-scheme: dark) { hr { border-bottom-color: #38383a; } }
+            pre { padding: 0.5em; margin: 1em 0; font: -apple-system-footnote; white-space: pre-wrap; background-color: #f2f2f7; }
+            @media (prefers-color-scheme: dark) { pre { background-color: #1c1c1e; } }
             p { margin: 0.5em 0; }
             a { color: #007aff; text-decoration: none; }
+            @media (prefers-color-scheme: dark) { a { color: #0a84ff; } }
             img { max-width: 100%; }
             button { display: none; }
             body :first-child { margin-top: 0; }

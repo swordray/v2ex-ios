@@ -11,7 +11,7 @@ import UIKit
 class ActivityIndicatorView: UIActivityIndicatorView {
 
     init() {
-        super.init(style: .gray)
+        super.init(style: .medium)
     }
 
     @available(*, unavailable)

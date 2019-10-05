@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Nc0-jC-ZL8">
-    <device id="retina6_5" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Nc0-jC-ZL8">
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -25,11 +22,11 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XPJ-uA-0Id" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="668" y="109"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Tqt-Fb-JOH">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="oeV-fG-N3W" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="PpZ-sY-V8f" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" id="X5O-kL-317"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="o92-Ez-6qq">
@@ -40,20 +37,21 @@
                         <segue destination="ab7-YW-JVL" kind="relationship" relationship="rootViewController" id="wYk-Z8-3D8"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oeV-fG-N3W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="151" y="913"/>
         </scene>
-        <!--View Controller-->
+        <!--V2EX-->
         <scene sceneID="jt8-EU-zCn">
             <objects>
                 <viewController id="ab7-YW-JVL" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tQd-fS-9ld">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="dIu-lC-2qI"/>
                     </view>
-                    <navigationItem key="navigationItem" id="7Re-gy-brW"/>
+                    <navigationItem key="navigationItem" title="V2EX" id="7Re-gy-brW"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cVj-7Q-kpz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

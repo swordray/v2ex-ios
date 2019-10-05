@@ -19,8 +19,6 @@ class TopicsNodesView: UIScrollView {
 
         alwaysBounceHorizontal = true
 
-        backgroundColor = UIColor(displayP3Red: 249 / 255, green: 249 / 255, blue: 249 / 255, alpha: 1)
-
         showsHorizontalScrollIndicator = false
 
         stackView = UIStackView()

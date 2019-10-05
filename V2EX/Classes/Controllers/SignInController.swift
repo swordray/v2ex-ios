@@ -64,7 +64,7 @@ class SignInController: ViewController {
         if isRefreshing { return }
         isRefreshing = true
         (tableView.cellForRow(at: IndexPath(row: 0, section: 1)) as? SignInCaptchaCell)?.captchaField.text = nil
-        Alamofire.request(
+        AF.request(
             baseURL.appendingPathComponent("signin")
         ).responseString { response in
             if 200..<300 ~= response.response?.statusCode ?? 0 {
@@ -124,7 +124,7 @@ class SignInController: ViewController {
         guard let session = session else { return }
         view.endEditing(true)
         showHUD()
-        Alamofire.request(
+        AF.request(
             baseURL.appendingPathComponent("signin"),
             method: .post,
             parameters: [
@@ -207,7 +207,7 @@ extension SignInController: UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.description(), for: indexPath)
             cell.selectionStyle = termsSwitch.isOn ? .default : .none
             cell.textLabel?.text = "登录"
-            cell.textLabel?.textColor = termsSwitch.isOn ? tableView.tintColor : .lightGray
+            cell.textLabel?.textColor = termsSwitch.isOn ? tableView.tintColor : .tertiaryLabel
             return cell
 
         default:

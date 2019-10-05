@@ -22,19 +22,19 @@ class UserHeaderView: UITableViewHeaderFooterView {
         let stackView = UIStackView()
         stackView.alignment = .center
         stackView.axis = .vertical
-        stackView.spacing = UIFontMetrics.default.scaledValue(for: 12)
+        stackView.spacing = 12
         contentView.addSubview(stackView)
         stackView.snp.makeConstraints { make in
             make.leadingMargin.trailingMargin.equalToSuperview()
-            make.top.equalToSuperview().offset(UIFontMetrics.default.scaledValue(for: 20))
-            make.bottom.equalToSuperview().offset(UIFontMetrics.default.scaledValue(for: -20)).priority(999)
+            make.top.equalToSuperview().offset(20)
+            make.bottom.equalToSuperview().offset(-20).priority(999)
         }
 
         avatarView = UIImageView()
-        avatarView.backgroundColor = .white
+        avatarView.backgroundColor = .secondarySystemGroupedBackground
         avatarView.clipsToBounds = true
-        avatarView.layer.cornerRadius = UIFontMetrics.default.scaledValue(for: 44)
-        avatarView.snp.makeConstraints { $0.size.equalTo(UIFontMetrics.default.scaledValue(for: 88)) }
+        avatarView.layer.cornerRadius = 44
+        avatarView.snp.makeConstraints { $0.size.equalTo(88) }
         stackView.addArrangedSubview(avatarView)
 
         nameLabel = UILabel()
@@ -47,7 +47,7 @@ class UserHeaderView: UITableViewHeaderFooterView {
 
         createdAtLabel = UILabel()
         createdAtLabel.font = .preferredFont(forTextStyle: .body)
-        createdAtLabel.textColor = .gray
+        createdAtLabel.textColor = .secondaryLabel
         stackView.addArrangedSubview(createdAtLabel)
     }
 

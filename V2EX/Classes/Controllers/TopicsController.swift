@@ -17,7 +17,7 @@ class TopicsController: ViewController {
     private var networkErrorView: NetworkErrorView!
     public  var node = Node.all { didSet { didSetNode() } }
     private var nodesView: TopicsNodesView?
-    private var notFoundView: NotFoundView!
+    private var noContentView: NoContentView!
     private var tableView: UITableView!
     private var topics: [Topic] = []
     private var topicsIsLoaded = false
@@ -33,8 +33,8 @@ class TopicsController: ViewController {
         tableView.refreshControl?.addTarget(self, action: #selector(fetchData), for: .valueChanged)
         tableView.register(TopicsCell.self, forCellReuseIdentifier: TopicsCell.description())
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.description())
-        tableView.scrollIndicatorInsets.top = self == navigationController?.viewControllers.first ? 44 : 0
         tableView.tableFooterView = UIView()
+        tableView.verticalScrollIndicatorInsets.top = self == navigationController?.viewControllers.first ? 44 : 0
         view = tableView
 
         activityIndicatorView = ActivityIndicatorView()
@@ -44,9 +44,9 @@ class TopicsController: ViewController {
         networkErrorView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(fetchData)))
         view.addSubview(networkErrorView)
 
-        notFoundView = NotFoundView()
-        notFoundView.textLabel?.text = "无内容"
-        view.addSubview(notFoundView)
+        noContentView = NoContentView()
+        noContentView.textLabel?.text = "无内容"
+        view.addSubview(noContentView)
 
         nodesView = self == navigationController?.viewControllers.first ? TopicsNodesView() : nil
         tableView.tableHeaderView = nodesView
@@ -75,8 +75,6 @@ class TopicsController: ViewController {
 
         title = self == navigationController?.viewControllers.first ? Bundle.main.infoDictionary?[kCFBundleNameKey as String] as? String : node.name
 
-        registerForPreviewing(with: self, sourceView: tableView)
-
         tableView.indexPathsForSelectedRows?.forEach { tableView.deselectRow(at: $0, animated: animated) }
 
         if topics.count == 0 && !topicsIsLoaded || !networkErrorView.isHidden { fetchData() }
@@ -87,7 +85,7 @@ class TopicsController: ViewController {
         if activityIndicatorView.isAnimating { tableView.refreshControl?.endRefreshing() }
         if isRefreshing { return }
         isRefreshing = true
-        Alamofire.request(
+        AF.request(
             self != navigationController?.viewControllers.first ? baseURL.appendingPathComponent("go").appendingPathComponent(node.code ?? "") : node.code == Node.all.code && topics.count > 0 && !(tableView.refreshControl?.isRefreshing ?? false) ? baseURL.appendingPathComponent("recent") : baseURL,
             parameters: [
                 "p": tableView.refreshControl?.isRefreshing ?? false ? 1 : topicsNextPage,
@@ -138,7 +136,7 @@ class TopicsController: ViewController {
                     ] as [String: Any?]
                 }
                 self.topics += (try? [Topic](json: json ?? [])) ?? []
-                self.notFoundView.isHidden = self.topics.count > 0
+                self.noContentView.isHidden = self.topics.count > 0
             } else {
                 self.networkErrorView.isHidden = false
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
@@ -153,7 +151,7 @@ class TopicsController: ViewController {
     private func didSetRefreshing() {
         if isRefreshing {
             networkErrorView.isHidden = true
-            notFoundView.isHidden = true
+            noContentView.isHidden = true
             nodesView?.isEnabled = false
             if tableView.refreshControl?.isRefreshing ?? false { return }
             activityIndicatorView.startAnimating()
@@ -174,11 +172,11 @@ class TopicsController: ViewController {
         if user == nil {
             navigationItem.rightBarButtonItem = nil
         } else if user?.once == nil {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "person-crop-circle"), style: .plain, target: self, action: #selector(showSignIn))
+            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "person.crop.circle"), style: .plain, target: self, action: #selector(showSignIn))
         } else {
             let imageView = UIImageView()
             imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showUser)))
-            imageView.backgroundColor = .groupTableViewBackground
+            imageView.backgroundColor = .secondarySystemBackground
             imageView.clipsToBounds = true
             imageView.isUserInteractionEnabled = true
             imageView.layer.cornerRadius = 14
@@ -241,6 +239,7 @@ extension TopicsController: UITableViewDataSource {
         switch indexPath.section {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: TopicsCell.description(), for: indexPath) as? TopicsCell ?? .init()
+            cell.tableViewStyle = tableView.style
             cell.topic = topics[indexPath.row]
             return cell
 
@@ -277,22 +276,5 @@ extension TopicsController: UITableViewDelegate {
         default:
             break
         }
-    }
-}
-
-extension TopicsController: UIViewControllerPreviewingDelegate {
-
-    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
-        guard let indexPath = tableView.indexPathForRow(at: location) else { return nil }
-        if indexPath.section != 0 { return nil }
-        guard let cell = tableView.cellForRow(at: indexPath) else { return nil }
-        previewingContext.sourceRect = cell.frame
-        let topicController = TopicController()
-        topicController.topic = topics[indexPath.row]
-        return topicController
-    }
-
-    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
-        navigationController?.pushViewController(viewControllerToCommit, animated: true)
     }
 }

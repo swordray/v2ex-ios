@@ -36,7 +36,7 @@ class TopicController: ViewController {
             UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
             UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(ignore)),
             UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
-            UIBarButtonItem(image: UIImage(named: "flag"), style: .plain, target: self, action: #selector(showReport)),
+            UIBarButtonItem(image: UIImage(systemName: "flag"), style: .plain, target: self, action: #selector(showReport)),
             UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
             UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(action)),
         ]
@@ -89,7 +89,7 @@ class TopicController: ViewController {
     private func fetchData() {
         if isRefreshing { return }
         isRefreshing = true
-        Alamofire.request(
+        AF.request(
             baseURL
                 .appendingPathComponent("t")
                 .appendingPathComponent(String(topic?.id ?? 0)),
@@ -165,7 +165,7 @@ class TopicController: ViewController {
         guard let page = topic?.repliesNextPage else { return }
         if isRefreshing { return }
         isRefreshing = true
-        Alamofire.request(
+        AF.request(
             baseURL
                 .appendingPathComponent("t")
                 .appendingPathComponent(String(topic?.id ?? 0)),
@@ -213,7 +213,7 @@ class TopicController: ViewController {
         bodyCell = TopicBodyCell()
         commentCells = (topic?.comments ?? []).map { _ in TopicCommentCell() }
 
-        toolbarItems?.first?.image = topic?.isFavorite ?? false ? UIImage(named: "star-fill") : UIImage(named: "star")
+        toolbarItems?.first?.image = topic?.isFavorite ?? false ? UIImage(systemName: "star.fill") : UIImage(systemName: "star")
 
         userActivity?.webpageURL = baseURL
             .appendingPathComponent("t")
@@ -234,7 +234,7 @@ class TopicController: ViewController {
     private func toggleFavorite(_ sender: Any) {
         if ((tabBarController?.viewControllers?.first as? UINavigationController)?.viewControllers.first as? TopicsController)?.user?.once == nil { return signInRequired(sender) }
         showHUD()
-        Alamofire.request(
+        AF.request(
             baseURL
                 .appendingPathComponent(topic?.isFavorite ?? false ? "unfavorite" : "favorite")
                 .appendingPathComponent("topic")
@@ -280,7 +280,7 @@ class TopicController: ViewController {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alertController.addAction(UIAlertAction(title: "忽略", style: .destructive) { _ in
             self.showHUD()
-            Alamofire.request(
+            AF.request(
                 self.baseURL.appendingPathComponent("/ignore/topic/\(self.topic?.id ?? 0)"),
                 parameters: [
                     "once": self.topic?.once ?? "",
@@ -316,7 +316,7 @@ class TopicController: ViewController {
 
     internal func report() {
         showHUD()
-        Alamofire.request(
+        AF.request(
             URL(string: "https://ruby-china.net/v2ex") ?? .init(fileURLWithPath: "")
         ).response { response in
             if 200..<300 ~= response.response?.statusCode ?? 0 {

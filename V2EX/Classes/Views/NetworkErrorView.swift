@@ -16,13 +16,13 @@ class NetworkErrorView: UIView {
         isHidden = true
 
         let label = UILabel()
-        label.backgroundColor = .gray
+        label.backgroundColor = .systemGray
         label.clipsToBounds = true
         label.font = .boldSystemFont(ofSize: 17)
         label.layer.cornerRadius = 10
         label.text = "!"
         label.textAlignment = .center
-        label.textColor = .white
+        label.textColor = .systemBackground
         addSubview(label)
         label.snp.makeConstraints { make in
             make.center.equalToSuperview()
