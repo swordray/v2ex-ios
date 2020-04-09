@@ -112,7 +112,7 @@ class TopicController: ViewController {
                 let repliesNextPage = Int(doc?.at_css(".page_current + a")?.text ?? "")
                 let userJSON = [
                     "name": doc?.at_css(".header .gray a")?.text,
-                    "avatar": "https:\(doc?.at_css(".header .avatar")?["src"] ?? "")",
+                    "avatar": doc?.at_css(".header .avatar")?["src"],
                 ]
                 let nodeJSON = [
                     "name": doc?.css(".header a")[2].text,
@@ -147,7 +147,7 @@ class TopicController: ViewController {
                         "createdAt": ".+前|刚刚|\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}".r?.findFirst(in: $0.at_css(".ago")?.text ?? "")?.matched,
                         "user": [
                             "name": $0.at_css(".dark")?.text,
-                            "avatar": "https:\($0.at_css(".avatar")?["src"] ?? "")",
+                            "avatar": $0.at_css(".avatar")?["src"],
                         ],
                     ] as [String: Any?]
                 }
@@ -183,7 +183,7 @@ class TopicController: ViewController {
                         "createdAt": ".+前|刚刚|\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}".r?.findFirst(in: $0.at_css(".ago")?.text ?? "")?.matched,
                         "user": [
                             "name": $0.at_css(".dark")?.text,
-                            "avatar": "https:\($0.at_css(".avatar")?["src"] ?? "")",
+                            "avatar": $0.at_css(".avatar")?["src"],
                         ],
                     ] as [String: Any?]
                 }

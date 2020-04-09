@@ -22,7 +22,7 @@ class NetworkErrorView: UIView {
         label.layer.cornerRadius = 10
         label.text = "!"
         label.textAlignment = .center
-        label.textColor = .systemBackground
+        label.textColor = .white
         addSubview(label)
         label.snp.makeConstraints { make in
             make.center.equalToSuperview()

@@ -94,7 +94,7 @@ class UserController: ViewController {
                 let json = [
                     "id": Int("第 (\\d+) 号会员".r?.findFirst(in: doc?.at_css("#Main .box:nth-child(2) .gray")?.text ?? "")?.group(at: 1) ?? ""),
                     "name": self.user?.name,
-                    "avatar": "https:\(doc?.at_css(".avatar")?["src"] ?? "")",
+                    "avatar": doc?.at_css(".avatar")?["src"],
                     "isBlocked": doc?.at_css(".super.normal.button")?["value"] == "Unblock",
                     "token": "t=(\\d+)".r?.findFirst(in: doc?.at_css(".super.normal.button")?["onclick"] ?? "")?.group(at: 1),
                     "once": self.user?.once,

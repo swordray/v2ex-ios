@@ -102,7 +102,7 @@ class TopicsController: ViewController {
                 if self == self.navigationController?.viewControllers.first {
                     let userJSON = [
                         "name": doc?.at_css("#Top td:nth-child(3) a:nth-child(2)")?.text,
-                        "avatar": "https:\(doc?.at_css("#Rightbar .box:nth-child(2) .avatar")?["src"] ?? "")",
+                        "avatar": doc?.at_css("#Rightbar .box:nth-child(2) .avatar")?["src"],
                         "once": "\\d{5}".r?.findFirst(in: doc?.at_css("#Top td:nth-child(3) a:last-child")?["onclick"] ?? "")?.matched,
                     ]
                     self.user = try? User(json: userJSON)
@@ -127,7 +127,7 @@ class TopicsController: ViewController {
                         "isSticky": "corner_star".r?.matches($0["style"] ?? ""),
                         "user": [
                             "name": $0.at_css("strong")?.text,
-                            "avatar": "https:\($0.at_css("img")?["src"] ?? "")",
+                            "avatar": $0.at_css("img")?["src"],
                         ],
                         "node": [
                             "name": $0.at_css(".node")?.text,
