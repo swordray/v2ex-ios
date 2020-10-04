@@ -101,9 +101,9 @@ class TopicsController: ViewController {
                 let doc = try? HTML(html: response.value ?? "", encoding: .utf8)
                 if self == self.navigationController?.viewControllers.first {
                     let userJSON = [
-                        "name": doc?.at_css("#Top td:nth-child(3) a:nth-child(2)")?.text,
+                        "name": doc?.at_css("#Top .tools a:nth-child(2)")?.text,
                         "avatar": doc?.at_css("#Rightbar .box:nth-child(2) .avatar")?["src"],
-                        "once": "\\d{5}".r?.findFirst(in: doc?.at_css("#Top td:nth-child(3) a:last-child")?["onclick"] ?? "")?.matched,
+                        "once": "\\d{5}".r?.findFirst(in: doc?.at_css("#Top .tools a:last-child")?["onclick"] ?? "")?.matched,
                     ]
                     self.user = try? User(json: userJSON)
                 }

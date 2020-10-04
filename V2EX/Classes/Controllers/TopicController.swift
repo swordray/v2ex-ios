@@ -250,7 +250,7 @@ class TopicController: ViewController {
             if 200..<300 ~= response.response?.statusCode ?? 0 {
                 let doc = try? HTML(html: response.value ?? "", encoding: .utf8)
                 self.topic?.favoriteToken = "[^=]+$".r?.findFirst(in: doc?.at_css(".topic_buttons .tb")?["href"] ?? "")?.matched
-                self.topic?.isFavorite = !(self.topic?.isFavorite ?? false)
+                self.topic?.isFavorite?.toggle()
             } else {
                 self.networkError()
             }
